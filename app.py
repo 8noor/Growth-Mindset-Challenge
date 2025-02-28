@@ -14,6 +14,7 @@ st.markdown(
         .big-font { font-size:24px !important; font-weight: bold; }
         .highlight { color: #FF5733; font-weight: bold; }
         .success-box { background-color: #DFF2BF; padding: 10px; border-radius: 10px; }
+        .motivation-box { background-color: #E3F2FD; padding: 10px; border-radius: 10px; font-weight: bold; }
     </style>
     """,
     unsafe_allow_html=True
@@ -58,6 +59,22 @@ if achievements:
     st.success(f"🎉 Amazing! You've achieved: **{achievements}**. Keep up the great work! 🏆")
 else:
     st.info("🏆 Small or big, every win matters! What have you accomplished lately?")
+
+# 🔥 New Motivation Section
+st.markdown("### 💡 Need More Motivation?")
+motivation_quotes = [
+    "🌟 Every challenge is an opportunity to grow!",
+    "💪 Keep pushing! Progress happens one step at a time.",
+    "🚀 Believe in yourself. You are stronger than you think!",
+    "🔥 Growth begins at the end of your comfort zone.",
+    "🌱 Mistakes are proof that you're trying. Keep going!"
+]
+st.markdown(f'<div class="motivation-box">{st.session_state.get("motivation", "🌟 Every small win adds up to success! Keep going! 🚀")}</div>', unsafe_allow_html=True)
+
+if st.button("🔄 Get More Motivation!"):
+    import random
+    st.session_state["motivation"] = random.choice(motivation_quotes)
+    st.experimental_rerun()
 
 # Footer
 st.divider()
