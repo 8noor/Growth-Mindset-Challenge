@@ -8,65 +8,13 @@ st.set_page_config(
     layout="centered"
 )
 
-# Ensure session state is initialized for motivation
+# Initialize session state
 if "motivation" not in st.session_state:
     st.session_state["motivation"] = "🌟 Every small win adds up to success! Keep going! 🚀"
+if "button_clicked" not in st.session_state:
+    st.session_state["button_clicked"] = False  # Track button click state
 
-# Custom Styling
-st.markdown(
-    """
-    <style>
-        .big-font { font-size:24px !important; font-weight: bold; }
-        .highlight { color: #FF5733; font-weight: bold; }
-        .success-box { background-color: #DFF2BF; padding: 10px; border-radius: 10px; }
-        .motivation-box { background-color: #E3F2FD; padding: 10px; border-radius: 10px; font-weight: bold; top: 2px; left: 0px;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Title & Introduction
-st.title("🌟 Growth Challenge 🌟")
-st.subheader("🚀 Welcome to Your Growth Journey!")
-st.write("Take on challenges, learn from setbacks, and unlock your full potential. This **AI-powered app** helps you build a growth mindset through **reflection, challenges, and achievements.**")
-
-# Daily Quote Section
-st.divider()
-st.header("🌟 Daily Inspiration 🌟")
-st.markdown("> ❝Success is not final, failure is not fatal: It is the courage to continue that counts.❞ - **Winston Churchill**")
-
-# User Challenge Input
-st.divider()
-st.header("🛠️ What’s Your Challenge Today?")
-user_input = st.text_input("Share a challenge you're currently facing:")
-
-if user_input:
-    st.success(f"🙌 You've acknowledged your challenge: **{user_input}**. Facing it is the first step to growth! 🚀")
-else:
-    st.info("💡 Take a moment to reflect. What's challenging you today?")
-
-# Reflection Section
-st.divider()
-st.header("🌱 Reflect on Your Learning")
-reflection = st.text_area("How can you overcome this challenge with a growth mindset?")
-
-if reflection:
-    st.markdown(f'<div class="success-box">🚀 Your reflection is valuable: <span class="highlight">{reflection}</span> 🌟 Keep pushing forward! 🌱</div>', unsafe_allow_html=True)
-else:
-    st.warning("💭 Looking back on past experiences helps you grow. Share your thoughts!")
-
-# Achievements Section
-st.divider()
-st.header("🎉 Celebrate Your Wins!")
-achievements = st.text_input("Tell us about something you've recently achieved or collected! ✨")
-
-if achievements:
-    st.success(f"🎉 Amazing! You've achieved: **{achievements}**. Keep up the great work! 🏆")
-else:
-    st.info("🏆 Small or big, every win matters! What have you accomplished lately?")
-
-# 🔥 Motivation Section
-st.markdown("### 💡 Need More Motivation?")
+# Motivation Quotes
 motivation_quotes = [
     "🌟 Every challenge is an opportunity to grow!",
     "💪 Keep pushing! Progress happens one step at a time.",
@@ -75,14 +23,45 @@ motivation_quotes = [
     "🌱 Mistakes are proof that you're trying. Keep going!"
 ]
 
+# Custom Styling for Button
+button_color = "#FFA07A" if st.session_state["button_clicked"] else "#ADD8E6"  # Light change on click
 st.markdown(
-    f'<div class="motivation-box">{st.session_state["motivation"]}</div>',
+    f"""
+    <style>
+        .motiv-button {{
+            background-color: {button_color} !important;
+            color: white !important;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }}
+        .motiv-button:hover {{
+            background-color: #FF7F50 !important;
+        }}
+    </style>
+    """,
     unsafe_allow_html=True
 )
 
+# Motivation Box
+st.divider()
+st.markdown("### 💡 Need More Motivation?")
+st.markdown(
+    f'<div style="background-color:#E3F2FD; padding:10px; border-radius:10px; font-weight:bold;">{st.session_state["motivation"]}</div>',
+    unsafe_allow_html=True
+)
+
+# Spacing before button
+st.write("")
+st.write("")
+
+# Button with Dynamic Color
 if st.button("🔄 Get More Motivation!"):
     st.session_state["motivation"] = random.choice(motivation_quotes)
-    st.rerun()  # ✅ Corrected method to refresh the UI dynamically
+    st.session_state["button_clicked"] = not st.session_state["button_clicked"]  # Toggle button state
+    st.rerun()  # Refresh UI to apply color change
 
 # Footer
 st.divider()
