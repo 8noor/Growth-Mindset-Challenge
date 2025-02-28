@@ -1,11 +1,16 @@
 import streamlit as st
+import random
 
 # Set page configuration
 st.set_page_config(
-    page_title="Growth Mindset Challenges",
+    page_title="Growth Challenges",
     page_icon="🌱🌟",
     layout="centered"
 )
+
+# Ensure session state is initialized for motivation
+if "motivation" not in st.session_state:
+    st.session_state["motivation"] = "🌟 Every small win adds up to success! Keep going! 🚀"
 
 # Custom Styling
 st.markdown(
@@ -60,7 +65,7 @@ if achievements:
 else:
     st.info("🏆 Small or big, every win matters! What have you accomplished lately?")
 
-# 🔥 New Motivation Section
+# 🔥 Motivation Section
 st.markdown("### 💡 Need More Motivation?")
 motivation_quotes = [
     "🌟 Every challenge is an opportunity to grow!",
@@ -69,12 +74,15 @@ motivation_quotes = [
     "🔥 Growth begins at the end of your comfort zone.",
     "🌱 Mistakes are proof that you're trying. Keep going!"
 ]
-st.markdown(f'<div class="motivation-box">{st.session_state.get("motivation", "🌟 Every small win adds up to success! Keep going! 🚀")}</div>', unsafe_allow_html=True)
+
+st.markdown(
+    f'<div class="motivation-box">{st.session_state["motivation"]}</div>',
+    unsafe_allow_html=True
+)
 
 if st.button("🔄 Get More Motivation!"):
-    import random
     st.session_state["motivation"] = random.choice(motivation_quotes)
-    st.experimental_rerun()
+    st.experimental_rerun()  # Rerun the script to update the motivation text dynamically
 
 # Footer
 st.divider()
