@@ -82,7 +82,7 @@ st.markdown(
 
 if st.button("🔄 Get More Motivation!"):
     st.session_state["motivation"] = random.choice(motivation_quotes)
-    st.experimental_rerun()  # Rerun the script to update the motivation text dynamically
+    st.rerun()  # ✅ Corrected method to refresh the UI dynamically
 
 # Footer
 st.divider()
