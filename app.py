@@ -3,7 +3,7 @@ import random
 
 # Set page configuration
 st.set_page_config(
-    page_title="Growth Challenges",
+    page_title="Growth Mindset Challenges",
     page_icon="🌱🌟",
     layout="centered"
 )
