@@ -19,14 +19,14 @@ st.markdown(
         .big-font { font-size:24px !important; font-weight: bold; }
         .highlight { color: #FF5733; font-weight: bold; }
         .success-box { background-color: #DFF2BF; padding: 10px; border-radius: 10px; }
-        .motivation-box { background-color: #E3F2FD; padding: 10px; border-radius: 10px; font-weight: bold; }
+        .motivation-box { background-color: #E3F2FD; padding: 10px; border-radius: 10px; font-weight: bold; top: 2px; left: 0px;}
     </style>
     """,
     unsafe_allow_html=True
 )
 
 # Title & Introduction
-st.title("🌟 Growth Mindset Challenge 🌟")
+st.title("🌟 Growth Challenge 🌟")
 st.subheader("🚀 Welcome to Your Growth Journey!")
 st.write("Take on challenges, learn from setbacks, and unlock your full potential. This **AI-powered app** helps you build a growth mindset through **reflection, challenges, and achievements.**")
 
